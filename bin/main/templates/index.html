@@ -18,24 +18,35 @@
                 <div class="col col-8">
                     <div class="d-flex justify-content-start">
                         <h4 class="">To Do List</h4> 
-                        <a href="" class="badge badge-primary mx-4 my-2">새 할일 만들기</a>        
-
+                        <a href="" th:href="@{/create}" class="badge badge-primary mx-4 my-2">새 할일 만들기</a>
                     </div>
-                    <div class="d-flex justify-content-between my-4">
-                        <div class="col col-8">꽃밭에 물주기</div>
-                        <a href=""><span class="far fa-check-circle fa-2x"></span></a>                        
 
-                    </div>   
-                    <div class="mx-4 my-2">
-                        <p>
-                            새로 가꾼 꽃밭에 정원용 샤워기를 이용하여 흠뻑 물을 준다.
-                            흙이 썩지 않도록 조심하자.
-                        </p>
-                        <div class="d-flex justify-content-center my-4">
-                            <button class="btn btn-outline-primary btn-sm mx-1">Edit</button>
-                            <button class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+                    <!-- for문 시작-->
+                    <div th:each = "todo : ${todos}">
+
+                        <!-- unless문 시작-->
+                        <div th:unless="${ todo.status }">
+
+                            <div class="d-flex justify-content-between my-4">
+                                <div class="col col-8"><span th:text="${ todo.title }"></span></div>
+                                <a href=""><span class="far fa-check-circle fa-2x"></span></a>                        
+                            </div>   
+                            
+                            <div class="mx-4 my-2">
+                                <p th:text="${ todo.description }"></p>
+                                <div class="d-flex justify-content-center my-4">
+                                    <button class="btn btn-outline-primary btn-sm mx-1">Edit</button>
+                                    <button class="btn btn-outline-danger btn-sm mx-1">Delete</button>
+                                </div>
+                            </div>
+                            
                         </div>
+                        <!--unless문 종료-->
+
+                        
                     </div>
+                    <!-- for문 종료-->
+                        
                 </div>
             </div> 
     <hr>
@@ -43,17 +54,35 @@
                 <div class="col col-md-8">
     
                     <h4 class="mb">Done List</h4>
-                    <div class="d-flex justify-content-between my-4">
-                        <div class="col col-8">마당에 가래질 하기</div>                        
-                        <form action="">
-                            <button type="button" class="btn btn-dark"><span class="far fa-trash-alt fa-lg"></i></button>
-                        </form>    
+                    
+                    <!-- for문 시작-->
+                    <div th:each="todo : ${ todos }">
+
+                        <!-- if문 시작-->
+                        <div th:if="@{ todo.status }">
+                            <div class="d-flex justify-content-between my-4">
+                                <div class="col col-8"><span th:text="${ todo.title }"></span></div>                        
+                                <form action="">
+                                    <button type="button" class="btn btn-dark"><span class="far fa-trash-alt fa-lg"></i></button>
+                                </form>    
+                            </div>
+                        </div>
+                        <!-- if문 종료-->
                     </div>
+                    <!-- for문 종료-->
                 </div>
             </div>       
         </div>
     </header>
-
+ 
+    <!-- <div th:each="todo : ${todos}">
+        <p th:text="${todo.title}"></p>
+        <p th:text="${todo.description}"></p>           
+        <p th:text="${todo.time}"></p>
+        <p th:text="${todo.status}"></p>
+        <hr>
+	</div> -->
+ 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
