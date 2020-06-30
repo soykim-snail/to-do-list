@@ -7,7 +7,7 @@
 - Gradle
 - Mysql
 - JPA
-- Flyway (선택사항, 가산점 부여)
+- Flyway
 - Thymeleaf -Bootstrap
 - API 포함 (RESTFul)
 - Git
